@@ -9,7 +9,7 @@ class BaseballGame {
     func start() {
         let answer = makeAnswer()
         print("게임을 시작합니다!")
-        print("1~9의 숫자를 입력하세요!")
+        print("0~9의 숫자를 입력하세요!")
         print("입력: ", terminator: "" )
         while true {
             //기본값인 ""을 넣으면서 옵셔널을 언래핑함과 동시에 userNumber 상수에 유저가 넣은 readLine을 저장
@@ -27,8 +27,8 @@ class BaseballGame {
                 print("[error] 중복된 값을 입력하면 안됩니다!: ", terminator: "" )
                 continue
             }
-            if userNumberChange.contains(0) {
-                print("[error] '0'을 입력하면 안됩니다!: ", terminator: "" )
+            if userNumberChange[0] == 0 {
+                print("[error] 첫자리수에'0'을 입력하면 안됩니다!: ", terminator: "" )
                 continue
             }
             //checkAnswer 함수에 매개변수의 값을 입력해줌
@@ -45,12 +45,17 @@ class BaseballGame {
     
     //답 만들기: answerList를 shuffle하여 answer 변수 배열에 저장
     func makeAnswer() -> [Int] {
-        var answerList: [Int] = [1,2,3,4,5,6,7,8,9]
+        var answerList: [Int] = [0,1,2,3,4,5,6,7,8,9]
         var answerentry: [Int] = []
         answerList.shuffle()
         answerentry.append(answerList[0])
         answerentry.append(answerList[1])
         answerentry.append(answerList[2])
+        //첫번째 자리에 0이 나올경우 첫번째있는 숫자를 삭제하고 뒤에 answerList의 4번째에 있는 숫자를 넣는다.
+        if answerentry[0] == 0 {
+            answerentry.append(answerList[3])
+            answerentry.removeFirst()
+        }
         print(answerentry)
         return answerentry
     }
