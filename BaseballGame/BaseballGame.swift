@@ -20,10 +20,15 @@ class BaseballGame {
             
             // 4. 정답과 유저의 입력값을 비교하여 스트라이크/볼을 출력하기
             // 만약 정답이라면 break 호출하여 반복문 탈출
-            //옵셔널을 까주고 = string 이 나오면 string->int로 바꿔줘야함
+            //기본값인 ""을 넣으면서 옵셔널을 언래핑함과 동시에 userNumber 상수에 유저가 넣은 readLine을 저장
             let userNumber = readLine() ?? ""
-            let userNumberChange = String(userNumber).compactMap { Int(String($0))}
+            //userNumberChange 상수에 compactoMap 함수를 이용해 int가 아닌 nil들을 제거하며 각 문자를 한글자씩 순회하며
+            //Int로 변환시켜줌. 그리고 변환 시킨 값들로 배열을 생섬함.
+            let userNumberChange = userNumber.compactMap { Int(String($0))}
             print(userNumberChange)
+            //checkAnswer 함수에 매개변수의 값을 입력해줌
+            checkAnswer(userChoice: userNumberChange, competuerChoice: answer)
+            //만약 userNumberChange와 랜덤으로 만든 answer가 같을때 중지 틀렸을때는 다시 돌아가기.
             if userNumberChange == answer {
                 print("정답입니다!")
                 break
@@ -44,7 +49,19 @@ class BaseballGame {
         print(answerentry)
         return answerentry
     }
+    func checkAnswer(userChoice: [Int], competuerChoice: [Int]) {
+        var strike = 0
+        var ball = 0
+        for i in 0..<userChoice.count {
+            if userChoice[i] == competuerChoice[i] {
+                strike += 1
+            } else if competuerChoice.contains(userChoice[i]) {
+                ball += 1
+            }
+            print("스트라이크: \(strike), 볼: \(ball)")
+        }
+    }
+    
+    
+    
 }
-
-
-
