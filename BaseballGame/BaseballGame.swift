@@ -6,6 +6,28 @@
 //
 
 class BaseballGame {
+    
+    func mainscreen() {
+        print("환영합니다 :) 원하시는 번호를 입력해주세요.")
+        print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
+        while true{
+            let mainScreenNumber = readLine() ?? ""
+            switch mainScreenNumber {
+            case "1":
+                start()
+            case"2":
+                print("게임 기록을 불러옵니다.")
+                return
+            case"3":
+                print("게임을 종료 합니다.")
+                return
+            default:
+                print("번호를 입력하세요!")
+                continue
+            }
+        }
+    }
+    
     func start() {
         let answer = makeAnswer()
         print("게임을 시작합니다!")
