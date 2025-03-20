@@ -20,8 +20,16 @@ class BaseballGame {
             
             // 4. 정답과 유저의 입력값을 비교하여 스트라이크/볼을 출력하기
             // 만약 정답이라면 break 호출하여 반복문 탈출
-            let usernumber = readLine() //옵셔널을 까주고 = string 이 나오면 string->int로 바꿔줘야함
-            let readLineInt = [Int](usernumber)
+            //옵셔널을 까주고 = string 이 나오면 string->int로 바꿔줘야함
+            let userNumber = readLine() ?? ""
+            let userNumberChange = String(userNumber).compactMap { Int(String($0))}
+            print(userNumberChange)
+            if userNumberChange == answer {
+                print("정답입니다!")
+                break
+            } else {
+                print("다시 입력해주세요: ", terminator: "")
+            }
         }
     }
     
@@ -36,7 +44,6 @@ class BaseballGame {
         print(answerentry)
         return answerentry
     }
-    
 }
 
 
