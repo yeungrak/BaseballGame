@@ -8,13 +8,16 @@
 class BaseballGame {
     
     func mainscreen() {
+        //안내 문구 출력, 입력
         while true{
             print("환영합니다 :) 원하시는 번호를 입력해주세요.")
             print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
             let mainScreenNumber = readLine() ?? ""
             switch mainScreenNumber {
+            //1번을 입력하여 게임 시작하기 실행시 start()함수로 가서 게임 시작
             case "1":
                 start()
+           //게임 기록 불러오기 미구현
             case"2":
                 print("게임 기록을 불러옵니다.")
                 return
@@ -44,9 +47,11 @@ class BaseballGame {
                 print("[error] 3자리 숫자를 입력해주세요!: ", terminator: "")
                 continue
             }
+            //만약 중복된 값이 있는경우 (예외상황)
             if Set(userNumberChange).count != 3 {
                 print("[error] 중복된 값을 입력하면 안됩니다!: ", terminator: "" )
                 continue
+            //만약 인덱스 0번째 자리에 0이 있을경우 (예외상황)
             }
             if userNumberChange[0] == 0 {
                 print("[error] 첫자리수에'0'을 입력하면 안됩니다!: ", terminator: "" )
@@ -69,6 +74,7 @@ class BaseballGame {
         var answerList: [Int] = [0,1,2,3,4,5,6,7,8,9]
         var answerentry: [Int] = []
         answerList.shuffle()
+        //변수 answerentry에 shuffle한 answerList의 0,1,2번째 인덱스의 값을 추가
         answerentry.append(answerList[0])
         answerentry.append(answerList[1])
         answerentry.append(answerList[2])
@@ -80,6 +86,7 @@ class BaseballGame {
         return answerentry
     }
     func checkAnswer(userChoice: [Int], competuerChoice: [Int]) {
+        //스트라이크,볼 변수 생성
         var strike = 0
         var ball = 0
         //userChoice[i] == competuerChoice[i] 부분을 추가하여
