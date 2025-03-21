@@ -8,9 +8,9 @@
 class BaseballGame {
     
     func mainscreen() {
-        print("환영합니다 :) 원하시는 번호를 입력해주세요.")
-        print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
         while true{
+            print("환영합니다 :) 원하시는 번호를 입력해주세요.")
+            print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
             let mainScreenNumber = readLine() ?? ""
             switch mainScreenNumber {
             case "1":
@@ -39,7 +39,6 @@ class BaseballGame {
             //userNumberChange 상수에 compactoMap 함수를 이용해 int가 아닌 nil들을 제거하며 각 문자를 한글자씩 순회하며
             //Int로 변환시켜줌. 그리고 변환 시킨 값들로 배열을 생섬함.
             let userNumberChange = userNumber.compactMap { Int(String($0))}
-            print(userNumberChange)
             //만약 3자리가 아닐경우 (예외상황)
             if userNumberChange.count != 3 {
                 print("[error] 3자리 숫자를 입력해주세요!: ", terminator: "")
@@ -60,7 +59,7 @@ class BaseballGame {
                 print("정답입니다!")
                 break
             } else {
-                print("[Nothing] 다시 입력해주세요: ", terminator: "")
+                print("다시 입력해주세요: ", terminator: "")
             }
         }
     }
@@ -78,7 +77,6 @@ class BaseballGame {
             answerentry.append(answerList[3])
             answerentry.removeFirst()
         }
-        print(answerentry)
         return answerentry
     }
     func checkAnswer(userChoice: [Int], competuerChoice: [Int]) {
